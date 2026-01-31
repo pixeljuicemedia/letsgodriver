@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Widget Test - MyDriver</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        body {
+            padding: 50px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #000;
+            margin-bottom: 20px;
+        }
+        .instruction {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #FFD34F;
+            margin: 20px 0;
+        }
+        .test-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .arrow {
+            font-size: 24px;
+            color: #FFD34F;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🤖 MyDriver Chat Widget Test Page</h1>
+        
+        <div class="instruction">
+            <strong>✅ Chat Widget Status: ACTIVE</strong><br>
+            Look for the yellow chat button in the bottom-right corner <span class="arrow">👉</span>
+        </div>
+
+        <h2>How to Test:</h2>
+        
+        <div class="test-item">
+            <strong>1. Click the Chat Button</strong><br>
+            Look for the floating yellow button with a chat icon in the bottom-right corner
+        </div>
+
+        <div class="test-item">
+            <strong>2. Try Quick Actions</strong><br>
+            Click one of the quick action buttons:
+            <ul>
+                <li>📅 Book a Ride</li>
+                <li>📋 Our Services</li>
+                <li>🚗 Vehicle Fleet</li>
+            </ul>
+        </div>
+
+        <div class="test-item">
+            <strong>3. Ask Questions</strong><br>
+            Try asking:
+            <ul>
+                <li>"How much does airport transfer cost?"</li>
+                <li>"What vehicles do you have?"</li>
+                <li>"I need a ride to LAX tomorrow"</li>
+                <li>"Tell me about your company"</li>
+            </ul>
+        </div>
+
+        <div class="test-item">
+            <strong>4. Test the AI Response</strong><br>
+            The AI should respond with relevant information about MyDriver services, pricing, and help you book a ride.
+        </div>
+
+        <h2>Expected Features:</h2>
+        <ul>
+            <li class="success">✓ Floating yellow chat button always visible</li>
+            <li class="success">✓ "Ask me anything!" badge on hover</li>
+            <li class="success">✓ Chat opens in a clean white window</li>
+            <li class="success">✓ Quick action buttons for common queries</li>
+            <li class="success">✓ AI-powered responses using Claude</li>
+            <li class="success">✓ Typing indicator while AI thinks</li>
+            <li class="success">✓ Works on all pages (home, services, vehicles, etc.)</li>
+        </ul>
+
+        <div class="instruction">
+            <strong>Note:</strong> If you don't see the chat button, check that:
+            <ul>
+                <li>The style.css file is loaded correctly</li>
+                <li>Font Awesome icons are loading</li>
+                <li>JavaScript is enabled in your browser</li>
+            </ul>
+        </div>
+
+        <h2>Navigation Links:</h2>
+        <p>
+            <a href="index.html">Home</a> | 
+            <a href="services.html">Services</a> | 
+            <a href="vehicles.html">Vehicles</a> | 
+            <a href="about.html">About</a> | 
+            <a href="booking.html">Booking</a> | 
+            <a href="contact.html">Contact</a>
+        </p>
+    </div>
+
+    <!-- AI Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-button" id="chatButton">
+            <i class="fas fa-comments"></i>
+            <span class="chat-badge">Ask me anything!</span>
+        </div>
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">
+                <div class="chat-header-content">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <h4>MyDriver Assistant</h4>
+                        <span class="chat-status">Online</span>
+                    </div>
+                </div>
+                <button class="chat-close" id="chatClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message bot-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Hello! 👋 I'm your MyDriver assistant. I can help you with:</p>
+                        <ul>
+                            <li>Booking a ride</li>
+                            <li>Information about our services</li>
+                            <li>Vehicle fleet details</li>
+                            <li>Pricing and availability</li>
+                        </ul>
+                        <p>How can I assist you today?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-quick-actions">
+                <button class="quick-action-btn" onclick="sendQuickMessage('I want to book a ride')">
+                    <i class="fas fa-calendar-check"></i> Book a Ride
+                </button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('What services do you offer?')">
+                    <i class="fas fa-list"></i> Our Services
+                </button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('Tell me about your vehicles')">
+                    <i class="fas fa-car"></i> Vehicle Fleet
+                </button>
+            </div>
+            <div class="chat-input-container">
+                <input 
+                    type="text" 
+                    class="chat-input" 
+                    id="chatInput" 
+                    placeholder="Type your message..."
+                    onkeypress="handleChatKeyPress(event)"
+                />
+                <button class="chat-send" id="chatSend" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/chat-widget.js"></script>
+</body>
+</html>

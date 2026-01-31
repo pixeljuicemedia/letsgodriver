@@ -55,7 +55,7 @@
                 </div>
                 <div class="contact-card">
                     <h3>✉️ Email</h3>
-                    <p>info@elitedriver.com</p>
+                    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="adc4c3cbc2edc8c1c4d9c8c9dfc4dbc8df83cec2c0">[email&#160;protected]</a></p>
                     <p>Response within 1 hour</p>
                 </div>
                 <div class="contact-card">
@@ -71,7 +71,69 @@
         <p>&copy; 2024 Elite Driver Services. All rights reserved.</p>
     </footer>
 
-    <script>
+    <!-- AI Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-button" id="chatButton">
+            <i class="fas fa-comments"></i>
+            <span class="chat-badge">Ask me anything!</span>
+        </div>
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">
+                <div class="chat-header-content">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <h4>MyDriver Assistant</h4>
+                        <span class="chat-status">Online</span>
+                    </div>
+                </div>
+                <button class="chat-close" id="chatClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message bot-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Hello! 👋 I'm your MyDriver assistant. I can help you with:</p>
+                        <ul>
+                            <li>Booking a ride</li>
+                            <li>Information about our services</li>
+                            <li>Vehicle fleet details</li>
+                            <li>Pricing and availability</li>
+                        </ul>
+                        <p>How can I assist you today?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-quick-actions">
+                <button class="quick-action-btn" onclick="sendQuickMessage('I want to book a ride')">
+                    <i class="fas fa-calendar-check"></i> Book a Ride
+                </button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('What services do you offer?')">
+                    <i class="fas fa-list"></i> Our Services
+                </button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('Tell me about your vehicles')">
+                    <i class="fas fa-car"></i> Vehicle Fleet
+                </button>
+            </div>
+            <div class="chat-input-container">
+                <input 
+                    type="text" 
+                    class="chat-input" 
+                    id="chatInput" 
+                    placeholder="Type your message..."
+                    onkeypress="handleChatKeyPress(event)"
+                />
+                <button class="chat-send" id="chatSend" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/chat-widget.js"></script><script>
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
 
@@ -127,14 +189,4 @@
             if (!indicator) {
                 indicator = document.createElement('div');
                 indicator.className = 'nav-indicator';
-                navLinks.appendChild(indicator);
-            }
-            
-            setActiveNavLink();
-        });
-
-        // Update indicator on window resize
-        window.addEventListener('resize', updateNavIndicator);
-    </script>
-</body>
-</html>
+                navLinks.ap
