@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Fleet - Elite Driver Services</title>
+	<link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html"><div class="logo"><img src="img/MyDriver-Logo-Web-White.png"></div></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link"><span class="nav-icon">🏠</span>Home</a></li>
+                <li><a href="services.html" class="nav-link"><span class="nav-icon">🚗</span>Services</a></li>
+                <li><a href="vehicles.html" class="nav-link"><span class="nav-icon">🎯</span>Vehicles</a></li>
+                <li><a href="about.html" class="nav-link"><span class="nav-icon">ℹ️</span>About</a></li>
+                <li><a href="booking.html" class="nav-link"><span class="nav-icon">📅</span>Booking</a></li>
+                <li><a href="contact.html" class="nav-link"><span class="nav-icon">📞</span>Contact</a></li>
+                <li class="nav-divider"></li>
+                <li class="social-menu-item">
+                    <div class="social-icons-mobile">
+                        <a href="#" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </li>
+            </ul>
+            <div class="social-icons-desktop">
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Vehicles Page -->
+    <div id="vehicles">
+        <div class="vehicles">
+            <div class="vehicle-hero">
+                Premium Vehicle Fleet
+            </div>
+
+            <div class="vehicle-intro">
+                <h2>Our Fleet</h2>
+                <p>Experience luxury and comfort with our meticulously maintained fleet of premium vehicles. Each car is regularly serviced and inspected to ensure the highest standards of safety and elegance.</p>
+            </div>
+
+            <div class="vehicle-specs">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <h4>Capacity</h4>
+                        <p>1-4 Passengers</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Model Year</h4>
+                        <p>2022-2024</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Amenities</h4>
+                        <p>Premium Audio</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Service</h4>
+                        <p>24/7 Available</p>
+                    </div>
+                </div>
+                <div class="vehicle-description">
+                    <p>Our luxury vehicles are equipped with the latest technology and comfort features. Each vehicle is professionally cleaned before every journey and maintained to pristine standards. We pride ourselves on offering an exceptional travel experience with premium interiors, climate control, and entertainment systems.</p>
+                </div>
+            </div>
+
+            <div class="gallery-section">
+                <h3>Vehicle Gallery</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openLightbox(0)">
+                        <div class="gallery-img">Image 1</div>
+                        <div class="gallery-overlay">
+                            <span class="gallery-overlay-icon">🔍</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(1)">
+                        <div class="gallery-img">Image 2</div>
+                        <div class="gallery-overlay">
+                            <span class="gallery-overlay-icon">🔍</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(2)">
+                        <div class="gallery-img">Image 3</div>
+                        <div class="gallery-overlay">
+                            <span class="gallery-overlay-icon">🔍</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(3)">
+                        <div class="gallery-img">Image 4</div>
+                        <div class="gallery-overlay">
+                            <span class="gallery-overlay-icon">🔍</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(4)">
+                        <div class="gallery-img">Image 5</div>
+                        <div class="gallery-overlay">
+                            <span class="gallery-overlay-icon">🔍</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(5)">
+                        <div class="gallery-img">Image 6</div>
+                        <div class="gallery-overlay">
+                            <span class="gallery-overlay-icon">🔍</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-content">
+                <span class="lightbox-close" onclick="closeLightbox()">×</span>
+                <span class="lightbox-nav lightbox-prev" onclick="prevImage()">‹</span>
+                <div class="lightbox-img" id="lightboxImg">Image</div>
+                <div class="lightbox-counter">
+                    <span id="imageCounter">1</span> / 6
+                </div>
+                <span class="lightbox-nav lightbox-next" onclick="nextImage()">›</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Elite Driver Services. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let currentImageIndex = 0;
+        const totalImages = 6;
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        // Navigation Toggle
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Set active nav link based on current page
+        function setActiveNavLink() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            updateNavIndicator();
+        }
+
+        // Update the sliding indicator
+        function updateNavIndicator() {
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+                const indicator = document.querySelector('.nav-indicator');
+                if (indicator) {
+                    const position = activeLink.offsetLeft;
+                    const width = activeLink.offsetWidth;
+                    indicator.style.left = position + 'px';
+                    indicator.style.width = width + 'px';
+                }
+            }
+        }
+
+        // Scroll handler for nav minification
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            updateNavIndicator();
+        });
+
+        // Initialize on page load
+        window.addEventListener('load', function() {
+            const navLinks = document.getElementById('navLinks');
+            let indicator = document.querySelector('.nav-indicator');
+            
+            if (!indicator) {
+                indicator = document.createElement('div');
+                indicator.className = 'nav-indicator';
+                navLinks.appendChild(indicator);
+            }
+            
+            setActiveNavLink();
+        });
+
+        // Update indicator on window resize
+        window.addEventListener('resize', updateNavIndicator);
+
+        // Lightbox Gallery Functions
+        function openLightbox(index) {
+            currentImageIndex = index;
+            document.getElementById('lightbox').classList.add('active');
+            updateLightboxImage();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % totalImages;
+            updateLightboxImage();
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            document.getElementById('imageCounter').textContent = currentImageIndex + 1;
+        }
+
+        // Keyboard controls for lightbox
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+    </script>
+</body>
+</html>

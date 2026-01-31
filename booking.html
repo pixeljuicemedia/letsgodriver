@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Ride - Elite Driver Services</title>
+	<link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html"><div class="logo"><img src="img/MyDriver-Logo-Web-White.png"></div></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link"><span class="nav-icon">🏠</span>Home</a></li>
+                <li><a href="services.html" class="nav-link"><span class="nav-icon">🚗</span>Services</a></li>
+                <li><a href="vehicles.html" class="nav-link"><span class="nav-icon">🎯</span>Vehicles</a></li>
+                <li><a href="about.html" class="nav-link"><span class="nav-icon">ℹ️</span>About</a></li>
+                <li><a href="booking.html" class="nav-link"><span class="nav-icon">📅</span>Booking</a></li>
+                <li><a href="contact.html" class="nav-link"><span class="nav-icon">📞</span>Contact</a></li>
+                <li class="nav-divider"></li>
+                <li class="social-menu-item">
+                    <div class="social-icons-mobile">
+                        <a href="#" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </li>
+            </ul>
+            <div class="social-icons-desktop">
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Booking Page -->
+    <div id="booking">
+        <div class="booking">
+            <h2>Book Your Ride</h2>
+            <div class="booking-container">
+                <div class="calendar-wrapper">
+                    <div class="calendar-header">
+                        <button onclick="previousMonth()">← Previous</button>
+                        <span id="monthYear"></span>
+                        <button onclick="nextMonth()">Next →</button>
+                    </div>
+                    <div class="weekdays">
+                        <div class="weekday">Sun</div>
+                        <div class="weekday">Mon</div>
+                        <div class="weekday">Tue</div>
+                        <div class="weekday">Wed</div>
+                        <div class="weekday">Thu</div>
+                        <div class="weekday">Fri</div>
+                        <div class="weekday">Sat</div>
+                    </div>
+                    <div class="dates" id="calendarDates"></div>
+                </div>
+                <form class="booking-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label>Selected Date</label>
+                        <input type="text" id="selectedDate" placeholder="Click a date on the calendar" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Pickup Location *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Destination *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Type *</label>
+                        <select required>
+                            <option>Select a service</option>
+                            <option>Airport Transfer</option>
+                            <option>Executive Chauffeur</option>
+                            <option>Event Transportation</option>
+                            <option>City Tour</option>
+                            <option>Long Distance</option>
+                            <option>Day Rental</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Special Requests</label>
+                        <textarea placeholder="Any special requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Confirm Booking</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Elite Driver Services. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let currentMonth = new Date();
+        let selectedDate = null;
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        // Navigation Toggle
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Set active nav link based on current page
+        function setActiveNavLink() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            updateNavIndicator();
+        }
+
+        // Update the sliding indicator
+        function updateNavIndicator() {
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+                const indicator = document.querySelector('.nav-indicator');
+                if (indicator) {
+                    const position = activeLink.offsetLeft;
+                    const width = activeLink.offsetWidth;
+                    indicator.style.left = position + 'px';
+                    indicator.style.width = width + 'px';
+                }
+            }
+        }
+
+        // Scroll handler for nav minification
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            updateNavIndicator();
+        });
+
+        // Initialize on page load
+        window.addEventListener('load', function() {
+            const navLinks = document.getElementById('navLinks');
+            let indicator = document.querySelector('.nav-indicator');
+            
+            if (!indicator) {
+                indicator = document.createElement('div');
+                indicator.className = 'nav-indicator';
+                navLinks.appendChild(indicator);
+            }
+            
+            setActiveNavLink();
+            renderCalendar();
+        });
+
+        // Update indicator on window resize
+        window.addEventListener('resize', updateNavIndicator);
+
+        // Calendar Functions
+        function renderCalendar() {
+            const monthYear = document.getElementById('monthYear');
+            const calendarDates = document.getElementById('calendarDates');
+            
+            const year = currentMonth.getFullYear();
+            const month = currentMonth.getMonth();
+            
+            monthYear.textContent = currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date();
+            
+            calendarDates.innerHTML = '';
+            
+            for (let i = 0; i < firstDay; i++) {
+                const emptyCell = document.createElement('div');
+                calendarDates.appendChild(emptyCell);
+            }
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateCell = document.createElement('div');
+                dateCell.className = 'date';
+                dateCell.textContent = day;
+                
+                const cellDate = new Date(year, month, day);
+                if (cellDate < today) {
+                    dateCell.classList.add('disabled');
+                } else {
+                    dateCell.onclick = function() { selectDate(day); };
+                }
+                
+                calendarDates.appendChild(dateCell);
+            }
+        }
+
+        function selectDate(day) {
+            const year = currentMonth.getFullYear();
+            const month = currentMonth.getMonth();
+            const date = new Date(year, month, day);
+            
+            selectedDate = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('selectedDate').value = selectedDate;
+            
+            document.querySelectorAll('.date').forEach(function(cell) { cell.classList.remove('selected'); });
+            event.target.classList.add('selected');
+        }
+
+        function previousMonth() {
+            currentMonth.setMonth(currentMonth.getMonth() - 1);
+            renderCalendar();
+        }
+
+        function nextMonth() {
+            currentMonth.setMonth(currentMonth.getMonth() + 1);
+            renderCalendar();
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your booking! We will confirm your appointment shortly.');
+            event.target.reset();
+            document.getElementById('selectedDate').value = '';
+        }
+    </script>
+</body>
+</html>

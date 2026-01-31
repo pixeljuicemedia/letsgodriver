@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Elite Driver Services</title>
+	<link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html"><div class="logo"><img src="img/MyDriver-Logo-Web-White.png"></div></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link"><span class="nav-icon">🏠</span>Home</a></li>
+                <li><a href="services.html" class="nav-link"><span class="nav-icon">🚗</span>Services</a></li>
+                <li><a href="vehicles.html" class="nav-link"><span class="nav-icon">🎯</span>Vehicles</a></li>
+                <li><a href="about.html" class="nav-link"><span class="nav-icon">ℹ️</span>About</a></li>
+                <li><a href="booking.html" class="nav-link"><span class="nav-icon">📅</span>Booking</a></li>
+                <li><a href="contact.html" class="nav-link"><span class="nav-icon">📞</span>Contact</a></li>
+                <li class="nav-divider"></li>
+                <li class="social-menu-item">
+                    <div class="social-icons-mobile">
+                        <a href="#" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </li>
+            </ul>
+            <div class="social-icons-desktop">
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Page -->
+    <div id="services">
+        <div class="services">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-img">Image Placeholder</div>
+                    <div class="service-content">
+                        <h3>Airport Transfers</h3>
+                        <p>Reliable airport pickup and drop-off services with real-time flight tracking.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">Image Placeholder</div>
+                    <div class="service-content">
+                        <h3>Executive Chauffeur</h3>
+                        <p>Professional driver service for business meetings and corporate events.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">Image Placeholder</div>
+                    <div class="service-content">
+                        <h3>Event Transportation</h3>
+                        <p>Elegant transport for weddings, galas, and special occasions.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">Image Placeholder</div>
+                    <div class="service-content">
+                        <h3>City Tours</h3>
+                        <p>Guided city tours with knowledgeable, experienced drivers.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">Image Placeholder</div>
+                    <div class="service-content">
+                        <h3>Long Distance Travel</h3>
+                        <p>Comfortable long-distance journeys with professional service.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">Image Placeholder</div>
+                    <div class="service-content">
+                        <h3>Day Rental</h3>
+                        <p>Full-day driver service for all your transportation needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Elite Driver Services. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        // Navigation Toggle
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Set active nav link based on current page
+        function setActiveNavLink() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            updateNavIndicator();
+        }
+
+        // Update the sliding indicator
+        function updateNavIndicator() {
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+                const indicator = document.querySelector('.nav-indicator');
+                if (indicator) {
+                    const position = activeLink.offsetLeft;
+                    const width = activeLink.offsetWidth;
+                    indicator.style.left = position + 'px';
+                    indicator.style.width = width + 'px';
+                }
+            }
+        }
+
+        // Scroll handler for nav minification
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            updateNavIndicator();
+        });
+
+        // Initialize on page load
+        window.addEventListener('load', function() {
+            const navLinks = document.getElementById('navLinks');
+            let indicator = document.querySelector('.nav-indicator');
+            
+            if (!indicator) {
+                indicator = document.createElement('div');
+                indicator.className = 'nav-indicator';
+                navLinks.appendChild(indicator);
+            }
+            
+            setActiveNavLink();
+        });
+
+        // Update indicator on window resize
+        window.addEventListener('resize', updateNavIndicator);
+    </script>
+</body>
+</html>
