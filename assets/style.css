@@ -651,6 +651,11 @@
             font-weight: bold;
         }
 
+        .about-img img {
+            width: 100%;
+           
+        }
+
         .about-content h2 {
             font-size: 2rem;
             margin-bottom: 1.5rem;
@@ -900,11 +905,14 @@
             margin-bottom: 2rem;
             font-size: 1.2rem;
         }
+        
 
         @media (min-width: 768px) {
             .vehicle-hero {
                 height: 500px;
             }
+
+
         }
 
         .vehicle-intro {
@@ -915,12 +923,12 @@
         .vehicle-intro h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
+            color: #fff;
+       }
 
         .vehicle-intro p {
             font-size: 1.1rem;
-            color: #666;
+            color: #ffffff;
             max-width: 700px;
             margin: 0 auto;
         }
@@ -930,6 +938,7 @@
             padding: 2rem;
             border-radius: 5px;
             margin-bottom: 3rem;
+            display: inline-block;
         }
 
         .specs-grid {
@@ -954,7 +963,7 @@
         }
 
         .spec-item p {
-            color: #333;
+            color: #a8a8a8;
             font-weight: bold;
             font-size: 1.1rem;
         }
@@ -1036,9 +1045,13 @@
         }
 
         .gallery-overlay-icon {
-            color: white;
+            color: white;           
             font-size: 2rem;
         }
+
+        .gallery-img img {
+    height: 100%;
+}
 
         /* Lightbox Modal */
         .lightbox {
