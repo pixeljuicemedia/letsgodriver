@@ -56,55 +56,25 @@
             isTyping = true;
 
             try {
-                // Call AI API
-                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                // Call YOUR backend API (not Anthropic directly)
+                const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        model: 'claude-sonnet-4-20250514',
-                        max_tokens: 1000,
-                        system: `You are a helpful assistant for MyDriver, a premium chauffeur service in Orange County and Los Angeles. 
-
-Our services include:
-- Airport Transfers: Reliable pickup/drop-off with flight tracking ($150-250 depending on distance)
-- Executive Chauffeur: Professional service for business meetings ($100/hour minimum 3 hours)
-- Event Transportation: Elegant transport for weddings and special occasions ($200-400)
-- City Tours: Guided tours with experienced drivers ($120/hour)
-- Long Distance Travel: Comfortable long-distance journeys (quoted per trip)
-- Day Rental: Full-day driver service ($800 for 8 hours)
-
-Our fleet consists of luxury vehicles (2022-2024 models), primarily Cadillac Escalades. We offer 24/7 service, are fully insured, and have 15+ years of experience.
-
-Contact information:
-- Phone: (555) 123-4567 (24/7)
-- Email: info@mydriver.com
-- Service area: Orange County and Los Angeles County
-
-When users want to book:
-1. Ask for: pickup location, destination, date/time, number of passengers, service type
-2. Recommend appropriate service based on their needs
-3. Provide price estimate if they ask
-4. Direct them to complete booking at booking.html or call (555) 123-4567
-
-Keep responses friendly, concise (2-3 short paragraphs max), and professional. Use emojis sparingly (1-2 max per message). Always be helpful and encourage bookings. If asked about topics outside your scope, politely redirect to your services.`,
-                        messages: [
-                            { role: 'user', content: message }
-                        ]
+                        message: message
                     })
                 });
 
                 const data = await response.json();
                 removeTypingIndicator();
                 
-                // Extract text from response
-                const botResponse = data.content
-                    .filter(item => item.type === 'text')
-                    .map(item => item.text)
-                    .join('\n');
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to get response');
+                }
 
-                addMessage(botResponse || "I apologize, I'm having trouble responding right now. Please try again or call us at (555) 123-4567.", 'bot');
+                addMessage(data.response || "I apologize, I'm having trouble responding right now. Please try again or call us at (555) 123-4567.", 'bot');
                 
             } catch (error) {
                 console.error('Chat error:', error);
