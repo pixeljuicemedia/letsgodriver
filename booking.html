@@ -65,34 +65,35 @@
                     </div>
                     <div class="dates" id="calendarDates"></div>
                 </div>
-                <form class="booking-form" onsubmit="handleSubmit(event)">
+                <form class="booking-form" action="https://formspree.io/f/xwvnwrny" method="POST">
+                    <input type="hidden" name="Selected Date" id="selectedDateHidden">
                     <div class="form-group">
                         <label>Selected Date</label>
                         <input type="text" id="selectedDate" placeholder="Click a date on the calendar" readonly>
                     </div>
                     <div class="form-group">
                         <label>Full Name *</label>
-                        <input type="text" required>
+                        <input type="text" name="Full Name" required>
                     </div>
                     <div class="form-group">
                         <label>Email Address *</label>
-                        <input type="email" required>
+                        <input type="email" name="Email" required>
                     </div>
                     <div class="form-group">
                         <label>Phone Number *</label>
-                        <input type="tel" required>
+                        <input type="tel" name="Phone" required>
                     </div>
                     <div class="form-group">
                         <label>Pickup Location *</label>
-                        <input type="text" required>
+                        <input type="text" name="Pickup Location" required>
                     </div>
                     <div class="form-group">
                         <label>Destination *</label>
-                        <input type="text" required>
+                        <input type="text" name="Destination" required>
                     </div>
                     <div class="form-group">
                         <label>Service Type *</label>
-                        <select required>
+                        <select name="Service Type" required>
                             <option>Select a service</option>
                             <option>Airport Transfer</option>
                             <option>Executive Chauffeur</option>
@@ -104,7 +105,7 @@
                     </div>
                     <div class="form-group">
                         <label>Special Requests</label>
-                        <textarea placeholder="Any special requirements..."></textarea>
+                        <textarea name="Special Requests" placeholder="Any special requirements..."></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Confirm Booking</button>
                 </form>
@@ -113,72 +114,8 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Elite Driver Services. All rights reserved.</p>
+        <p>&copy; 2026 Elite Driver Services. All rights reserved.</p>
     </footer>
-
-    <!-- AI Chat Widget -->
-    <div class="chat-widget" id="chatWidget">
-        <div class="chat-button" id="chatButton">
-            <i class="fas fa-comments"></i>
-            <span class="chat-badge">Ask me anything!</span>
-        </div>
-        <div class="chat-container" id="chatContainer">
-            <div class="chat-header">
-                <div class="chat-header-content">
-                    <i class="fas fa-robot"></i>
-                    <div>
-                        <h4>MyDriver Assistant</h4>
-                        <span class="chat-status">Online</span>
-                    </div>
-                </div>
-                <button class="chat-close" id="chatClose">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="chat-message bot-message">
-                    <div class="message-avatar">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="message-content">
-                        <p>Hello! 👋 I'm your MyDriver assistant. I can help you with:</p>
-                        <ul>
-                            <li>Booking a ride</li>
-                            <li>Information about our services</li>
-                            <li>Vehicle fleet details</li>
-                            <li>Pricing and availability</li>
-                        </ul>
-                        <p>How can I assist you today?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="chat-quick-actions">
-                <button class="quick-action-btn" onclick="sendQuickMessage('I want to book a ride')">
-                    <i class="fas fa-calendar-check"></i> Book a Ride
-                </button>
-                <button class="quick-action-btn" onclick="sendQuickMessage('What services do you offer?')">
-                    <i class="fas fa-list"></i> Our Services
-                </button>
-                <button class="quick-action-btn" onclick="sendQuickMessage('Tell me about your vehicles')">
-                    <i class="fas fa-car"></i> Vehicle Fleet
-                </button>
-            </div>
-            <div class="chat-input-container">
-                <input 
-                    type="text" 
-                    class="chat-input" 
-                    id="chatInput" 
-                    placeholder="Type your message..."
-                    onkeypress="handleChatKeyPress(event)"
-                />
-                <button class="chat-send" id="chatSend" onclick="sendMessage()">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script src="assets/chat-widget.js"></script>
     <script>
         let currentMonth = new Date();
         let selectedDate = null;
@@ -291,6 +228,7 @@
             
             selectedDate = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             document.getElementById('selectedDate').value = selectedDate;
+            document.getElementById('selectedDateHidden').value = selectedDate;
             
             document.querySelectorAll('.date').forEach(function(cell) { cell.classList.remove('selected'); });
             event.target.classList.add('selected');
@@ -304,13 +242,6 @@
         function nextMonth() {
             currentMonth.setMonth(currentMonth.getMonth() + 1);
             renderCalendar();
-        }
-
-        function handleSubmit(event) {
-            event.preventDefault();
-            alert('Thank you for your booking! We will confirm your appointment shortly.');
-            event.target.reset();
-            document.getElementById('selectedDate').value = '';
         }
     </script>
 </body>

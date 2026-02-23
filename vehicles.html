@@ -139,72 +139,8 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Elite Driver Services. All rights reserved.</p>
+        <p>&copy; 2026 Elite Driver Services. All rights reserved.</p>
     </footer>
-
-    <!-- AI Chat Widget -->
-    <div class="chat-widget" id="chatWidget">
-        <div class="chat-button" id="chatButton">
-            <i class="fas fa-comments"></i>
-            <span class="chat-badge">Ask me anything!</span>
-        </div>
-        <div class="chat-container" id="chatContainer">
-            <div class="chat-header">
-                <div class="chat-header-content">
-                    <i class="fas fa-robot"></i>
-                    <div>
-                        <h4>MyDriver Assistant</h4>
-                        <span class="chat-status">Online</span>
-                    </div>
-                </div>
-                <button class="chat-close" id="chatClose">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="chat-message bot-message">
-                    <div class="message-avatar">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="message-content">
-                        <p>Hello! 👋 I'm your MyDriver assistant. I can help you with:</p>
-                        <ul>
-                            <li>Booking a ride</li>
-                            <li>Information about our services</li>
-                            <li>Vehicle fleet details</li>
-                            <li>Pricing and availability</li>
-                        </ul>
-                        <p>How can I assist you today?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="chat-quick-actions">
-                <button class="quick-action-btn" onclick="sendQuickMessage('I want to book a ride')">
-                    <i class="fas fa-calendar-check"></i> Book a Ride
-                </button>
-                <button class="quick-action-btn" onclick="sendQuickMessage('What services do you offer?')">
-                    <i class="fas fa-list"></i> Our Services
-                </button>
-                <button class="quick-action-btn" onclick="sendQuickMessage('Tell me about your vehicles')">
-                    <i class="fas fa-car"></i> Vehicle Fleet
-                </button>
-            </div>
-            <div class="chat-input-container">
-                <input 
-                    type="text" 
-                    class="chat-input" 
-                    id="chatInput" 
-                    placeholder="Type your message..."
-                    onkeypress="handleChatKeyPress(event)"
-                />
-                <button class="chat-send" id="chatSend" onclick="sendMessage()">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script src="assets/chat-widget.js"></script>
     <script>
         let currentImageIndex = 0;
         const totalImages = 6;
@@ -272,6 +208,16 @@
         // Update indicator on window resize
         window.addEventListener('resize', updateNavIndicator);
 
+        // Gallery images array
+        const galleryImages = [
+            { src: 'img/airport-transfer.jpg', alt: 'Escalade Interior' },
+            { src: 'img/escalade2.jpg', alt: 'Escalade Rear View' },
+            { src: 'img/escalade3.jpg', alt: 'Escalade Interior Detail' },
+            { src: 'img/escalade23.jpg', alt: 'Escalade Dashboard' },
+            { src: 'img/hero-escalade-Bi6RQDa2.jpg', alt: 'Escalade Seating' },
+            { src: 'img/executive-chauffeur.jpg', alt: 'Escalade Detail' }
+        ];
+
         // Lightbox Gallery Functions
         function openLightbox(index) {
             currentImageIndex = index;
@@ -294,8 +240,15 @@
         }
 
         function updateLightboxImage() {
+            const img = galleryImages[currentImageIndex];
+            document.getElementById('lightboxImg').innerHTML = '<img src="' + img.src + '" alt="' + img.alt + '" style="max-width:100%;max-height:80vh;border-radius:8px;">';
             document.getElementById('imageCounter').textContent = currentImageIndex + 1;
         }
+
+        // Close lightbox when clicking outside image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
 
         // Keyboard controls for lightbox
         document.addEventListener('keydown', function(e) {
